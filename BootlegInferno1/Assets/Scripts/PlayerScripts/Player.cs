@@ -8,14 +8,14 @@ public class Player : InputProvider
 
     public static Player Instance { get; private set; }
 
-    private Rigidbody2D playerRigidbody;
+    [SerializeField]private Rigidbody2D playerRigidbody;
     private float defaultPlayerLinearDrag;
 
     [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float maxMovementSpeed = 3f;
 
-    private BoxCollider2D playerBoxCollider;
+    [SerializeField]private BoxCollider2D playerBoxCollider;
     private Vector3 boxColliderSize;
     private Vector3 boxColliderOffset;
 
@@ -30,9 +30,6 @@ public class Player : InputProvider
         }
         Instance = this;
 
-        playerRigidbody = GetComponent<Rigidbody2D>();
-        playerBoxCollider = GetComponent<BoxCollider2D>();
-
         boxColliderSize = playerBoxCollider.size;
         boxColliderOffset = playerBoxCollider.offset;
 
@@ -40,9 +37,8 @@ public class Player : InputProvider
 
         Debug.Log(boxColliderSize);
         playerInputActions.Player.Jump.performed += Jump;
-
+        
     }
-
 
 
     private void FixedUpdate()
@@ -71,7 +67,7 @@ public class Player : InputProvider
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (isGrounded())
+        if (isGrounded() && !Crouching())
         {
             Vector2 jumpVector2D = new Vector2(0f, 1f * jumpForce);
             if (context.performed)
@@ -79,7 +75,7 @@ public class Player : InputProvider
         }
     }
 
-    private void Crouching()
+    private bool Crouching()
     {
         float isCrouching = playerInputActions.Player.Crouch.ReadValue<float>();
 
@@ -91,6 +87,7 @@ public class Player : InputProvider
             float crouchingLinearDrag = defaultPlayerLinearDrag /20;
             playerRigidbody.drag = crouchingLinearDrag;
             playerBoxCollider.size = crouchColliderVector;
+            
         }
         else
         {
@@ -98,6 +95,8 @@ public class Player : InputProvider
             playerBoxCollider.size = boxColliderSize;
             playerRigidbody.drag = defaultPlayerLinearDrag;
         }
+        
+        return isCrouching !=0;
     }
 
     private void TurnPlayer(bool isTurnedRight)
@@ -116,5 +115,10 @@ public class Player : InputProvider
         float extraHeightTest = 0.1f;
         RaycastHit2D raycastHit = Physics2D.Raycast(playerBoxCollider.bounds.center, Vector2.down, playerBoxCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
         return raycastHit;
+    }
+
+    private void OnDisable()
+    {
+        playerInputActions.Player.Jump.performed -= Jump;
     }
 }
