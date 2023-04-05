@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LavaChunkScript : MonoBehaviour
+public class LavaChunkDestroy: MonoBehaviour
 {
     [SerializeField] private GameObject lavaParticles;
     

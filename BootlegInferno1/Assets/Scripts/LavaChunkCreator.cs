@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class LavaSpikeScript : MonoBehaviour
+public class LavaChunkCreator : MonoBehaviour
 {
-    [SerializeField] private Transform lavaChunkTransform;
+    [SerializeField] private Transform lavaChunkSpawnTransform;
     [SerializeField] private GameObject lavaChunk;
 
     [SerializeField] private float timeToInstantiate = 1f;
@@ -18,11 +18,10 @@ public class LavaSpikeScript : MonoBehaviour
     private void FixedUpdate()
     {
         time += Time.deltaTime;
-        Debug.Log(time);
         if(time >= timeToInstantiate)
         {
             time = 0f;
-            Instantiate(lavaChunk, lavaChunkTransform);
+            Instantiate(lavaChunk, lavaChunkSpawnTransform);
         }
     }
 }

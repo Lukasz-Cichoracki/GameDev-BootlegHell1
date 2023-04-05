@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3029498997190162597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.87, z: 0}
+  m_LocalPosition: {x: 0.15, y: -2.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5177388603050735206, guid: cc35afd292fc349128b36a291fb3a165, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10d0001c15b5d2348baa0329965e9e3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f822097b6d9264895adaadb1cae9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lavaChunkTransform: {fileID: 7073948717845043440}
+  lavaChunkSpawnTransform: {fileID: 7073948717845043440}
   lavaChunk: {fileID: 4994350265494706095, guid: de051a40fc8c8b6409dbe0bdbb7701af, type: 3}
   timeToInstantiate: 1
