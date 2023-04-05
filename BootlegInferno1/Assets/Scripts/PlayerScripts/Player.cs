@@ -15,7 +15,7 @@ public class Player : InputProvider
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float maxMovementSpeed = 3f;
 
-    [SerializeField]private BoxCollider2D playerBoxCollider;
+    [SerializeField] private CapsuleCollider2D playerBoxCollider;
     private Vector3 boxColliderSize;
     private Vector3 boxColliderOffset;
 
