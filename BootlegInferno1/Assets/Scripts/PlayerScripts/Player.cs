@@ -15,9 +15,9 @@ public class Player : InputProvider
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float maxMovementSpeed = 3f;
 
-    [SerializeField] private CapsuleCollider2D playerBoxCollider;
-    private Vector3 boxColliderSize;
-    private Vector3 boxColliderOffset;
+    [SerializeField] private CapsuleCollider2D playerCollider;
+    private Vector3 colliderSize;
+    private Vector3 colliderOffset;
 
     private bool canMove = true;
     private bool isTurnedRight;
@@ -30,12 +30,11 @@ public class Player : InputProvider
         }
         Instance = this;
 
-        boxColliderSize = playerBoxCollider.size;
-        boxColliderOffset = playerBoxCollider.offset;
+        colliderSize = playerCollider.size;
+        colliderOffset = playerCollider.offset;
 
         defaultPlayerLinearDrag = playerRigidbody.drag;
 
-        Debug.Log(boxColliderSize);
         playerInputActions.Player.Jump.performed += Jump;
         
     }
@@ -82,18 +81,29 @@ public class Player : InputProvider
         if (isCrouching != 0)
         {
             canMove = false;
-            float crouchingColliderSizeY = boxColliderSize.y / 2;
-            Vector3 crouchColliderVector = new Vector3(boxColliderSize.x, crouchingColliderSizeY, boxColliderSize.z);
-            float crouchingLinearDrag = defaultPlayerLinearDrag /20;
-            playerRigidbody.drag = crouchingLinearDrag;
-            playerBoxCollider.size = crouchColliderVector;
             
+            
+
+            float crouchingColliderSizeY = 2.1f; 
+            float crouchingOffsetY = 3.6f;
+            Vector3 crouchColliderVector = new Vector3(colliderSize.x, crouchingColliderSizeY, colliderSize.z);
+            Vector3 crouchOffsetVector = new Vector3(colliderOffset.x, crouchingOffsetY, colliderOffset.z);
+            
+            float crouchingLinearDrag = defaultPlayerLinearDrag /20;
+            
+            playerRigidbody.drag = crouchingLinearDrag;
+            playerCollider.size = crouchColliderVector;
+            playerCollider.offset = crouchOffsetVector;
+                      
         }
         else
         {
             canMove = true;
-            playerBoxCollider.size = boxColliderSize;
+            
+            playerCollider.size = colliderSize;
+            playerCollider.offset = colliderOffset;
             playerRigidbody.drag = defaultPlayerLinearDrag;
+        
         }
         
         return isCrouching !=0;
@@ -113,7 +123,7 @@ public class Player : InputProvider
     private bool isGrounded()
     {
         float extraHeightTest = 0.1f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(playerBoxCollider.bounds.center, Vector2.down, playerBoxCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
+        RaycastHit2D raycastHit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
         return raycastHit;
     }
 

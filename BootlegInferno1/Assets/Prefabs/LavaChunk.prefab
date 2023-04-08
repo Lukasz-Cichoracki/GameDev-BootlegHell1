@@ -185,3 +185,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa6c85c6f87e104485ecb15a935aea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lavaParticles: {fileID: 1124146141988281338, guid: 8db18ec9083888b4eaee1284cea63293, type: 3}
