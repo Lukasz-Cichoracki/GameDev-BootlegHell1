@@ -36,9 +36,16 @@ public class Player : InputProvider
         defaultPlayerLinearDrag = playerRigidbody.drag;
 
         playerInputActions.Player.Jump.performed += Jump;
+
+        PlayerTriggerDetection playerTriggerDetection = GetComponent<PlayerTriggerDetection>();
+        playerTriggerDetection.OnDeath += PlayerTriggerDetection_OnDeath;
         
     }
 
+    private void PlayerTriggerDetection_OnDeath(object sender, System.EventArgs e)
+    {
+        canMove = false;
+    }
 
     private void FixedUpdate()
     {
@@ -51,7 +58,7 @@ public class Player : InputProvider
         if (!isGrounded())
             movementSpeed /= 2;
 
-        if(canMove)
+        if(!Crouching() && canMove)
         {
             movementVector2D.x = moveDirection * movementSpeed;
 
@@ -80,10 +87,7 @@ public class Player : InputProvider
 
         if (isCrouching != 0)
         {
-            canMove = false;
             
-            
-
             float crouchingColliderSizeY = 2.1f; 
             float crouchingOffsetY = 3.6f;
             Vector3 crouchColliderVector = new Vector3(colliderSize.x, crouchingColliderSizeY, colliderSize.z);
@@ -94,19 +98,20 @@ public class Player : InputProvider
             playerRigidbody.drag = crouchingLinearDrag;
             playerCollider.size = crouchColliderVector;
             playerCollider.offset = crouchOffsetVector;
+
+            return true;
                       
         }
         else
         {
-            canMove = true;
             
             playerCollider.size = colliderSize;
             playerCollider.offset = colliderOffset;
             playerRigidbody.drag = defaultPlayerLinearDrag;
-        
+
+            return false;
         }
         
-        return isCrouching !=0;
     }
 
     private void TurnPlayer(bool isTurnedRight)
