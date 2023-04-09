@@ -128,7 +128,8 @@ public class Player : InputProvider
     private bool isGrounded()
     {
         float extraHeightTest = 0.1f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
+        Vector3 colliderReduction = new Vector3(0.1f, 0f, 0f);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size - colliderReduction, 0f, Vector2.down, extraHeightTest, platformLayerMask);
         return raycastHit;
     }
 
