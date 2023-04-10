@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Crystals : MonoBehaviour
 {
-    [SerializeField] private PlayerTriggerDetection playerTriggerDetection;
 
     private int allCrystals = 0;
 
@@ -16,12 +15,17 @@ public class Crystals : MonoBehaviour
     
     private void Start()
     {
-        playerTriggerDetection.OnCrystalCollected += CrystalsCollected_OnCrystalCollected;
+        PlayerTriggerDetection.Instance.OnCrystalCollected += CrystalsCollected_OnCrystalCollected;
     }
 
     private void CrystalsCollected_OnCrystalCollected(object sender, System.EventArgs e)
     {
         allCrystals++;
         CrystalsUpdate?.Invoke(this, new CrystalsUpdateEventArgs { crystals = allCrystals });
+    }
+
+    private void OnDestroy()
+    {
+        PlayerTriggerDetection.Instance.OnCrystalCollected -= CrystalsCollected_OnCrystalCollected;
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CollectingCrystalls : MonoBehaviour
 {
-    [SerializeField] private PlayerTriggerDetection playerTriggerDetection;
+    
     private void Start()
     {
-        playerTriggerDetection.OnCrystalCollected += PlayerTriggerDetection_OnCrystalCollected;
+       PlayerTriggerDetection.Instance.OnCrystalCollected += PlayerTriggerDetection_OnCrystalCollected;
     }
 
     private void PlayerTriggerDetection_OnCrystalCollected(object sender, System.EventArgs e)
@@ -17,6 +17,6 @@ public class CollectingCrystalls : MonoBehaviour
 
     private void OnDestroy()
     {
-      playerTriggerDetection.OnCrystalCollected -= PlayerTriggerDetection_OnCrystalCollected;
+      PlayerTriggerDetection.Instance.OnCrystalCollected -= PlayerTriggerDetection_OnCrystalCollected;
     }
 }
