@@ -9,7 +9,11 @@ public class PlayerTriggerDetection : MonoBehaviour
     private const string CRYSTAL_TAG = "Crystal";
     
     public event EventHandler OnDeath;
-    public event EventHandler OnCrystalCollected;
+    public event EventHandler<OnCrystalCollectedEventArgs> OnCrystalCollected;
+    public class OnCrystalCollectedEventArgs : EventArgs
+    {
+        public Collider2D collider;
+    }
 
     private void Awake()
     {
@@ -24,7 +28,7 @@ public class PlayerTriggerDetection : MonoBehaviour
         }
         if(collision.tag == CRYSTAL_TAG)
         {
-            OnCrystalCollected?.Invoke(this, EventArgs.Empty);
+            OnCrystalCollected?.Invoke(this, new OnCrystalCollectedEventArgs { collider = collision});
         }
     }
 }

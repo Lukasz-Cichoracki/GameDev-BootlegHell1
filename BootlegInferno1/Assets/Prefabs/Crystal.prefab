@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6548627730893985246}
   - component: {fileID: 6548627730893985245}
+  - component: {fileID: 4885358660450100850}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: CrystalVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +85,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4885358660450100850
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6548627730893985247}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97fd749f469188a47b3cd32bbcfa3912, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6548627731236190968
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +116,6 @@ GameObject:
   - component: {fileID: 6548627731236190973}
   - component: {fileID: 6548627731236190974}
   - component: {fileID: 6548627731236190975}
-  - component: {fileID: 1966969031}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Crystal
@@ -148,27 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009d5e1130970a64697480d0a7e9b636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTriggerDetection: {fileID: 0}
---- !u!95 &1966969031
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6548627731236190968}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14831efe728faca47bfca6d2bb9f398a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  crystalCollider: {fileID: 6548627731236190974}
 --- !u!1 &6548627731756908631
 GameObject:
   m_ObjectHideFlags: 0
