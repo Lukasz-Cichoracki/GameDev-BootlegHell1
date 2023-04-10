@@ -31,4 +31,12 @@ public class PlayerTriggerDetection : MonoBehaviour
             OnCrystalCollected?.Invoke(this, new OnCrystalCollectedEventArgs { collider = collision});
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == DANGER_TAG)
+        {
+            OnDeath?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
 }

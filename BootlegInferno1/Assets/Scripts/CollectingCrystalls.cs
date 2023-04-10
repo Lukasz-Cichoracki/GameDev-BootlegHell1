@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CollectingCrystalls : MonoBehaviour
 {
-    [SerializeField] private Collider2D crystalCollider;
+    private Collider2D crystalCollider;
     private void Start()
     {
-       PlayerTriggerDetection.Instance.OnCrystalCollected += PlayerTriggerDetection_OnCrystalCollected;
+        crystalCollider = GetComponent<Collider2D>();
+        PlayerTriggerDetection.Instance.OnCrystalCollected += PlayerTriggerDetection_OnCrystalCollected;
     }
 
     private void PlayerTriggerDetection_OnCrystalCollected(object sender, PlayerTriggerDetection.OnCrystalCollectedEventArgs e)

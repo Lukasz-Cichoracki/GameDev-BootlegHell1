@@ -10,6 +10,7 @@ public class Player : InputProvider
 
     [SerializeField]private Rigidbody2D playerRigidbody;
     private float defaultPlayerLinearDrag;
+    private float defaultPlayerGravity;
 
     [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private float jumpForce = 1f;
@@ -34,6 +35,7 @@ public class Player : InputProvider
         colliderOffset = playerCollider.offset;
 
         defaultPlayerLinearDrag = playerRigidbody.drag;
+        defaultPlayerGravity = playerRigidbody.gravityScale;
 
         playerInputActions.Player.Jump.performed += Jump;
 
@@ -94,8 +96,11 @@ public class Player : InputProvider
             Vector3 crouchOffsetVector = new Vector3(colliderOffset.x, crouchingOffsetY, colliderOffset.z);
             
             float crouchingLinearDrag = defaultPlayerLinearDrag /20;
+            float crocuhingGravity = defaultPlayerGravity + (defaultPlayerGravity * 0.2f);
             
             playerRigidbody.drag = crouchingLinearDrag;
+            playerRigidbody.gravityScale = crocuhingGravity;
+
             playerCollider.size = crouchColliderVector;
             playerCollider.offset = crouchOffsetVector;
 
@@ -107,7 +112,9 @@ public class Player : InputProvider
             
             playerCollider.size = colliderSize;
             playerCollider.offset = colliderOffset;
+            
             playerRigidbody.drag = defaultPlayerLinearDrag;
+            playerRigidbody.gravityScale = defaultPlayerGravity;
 
             return false;
         }
