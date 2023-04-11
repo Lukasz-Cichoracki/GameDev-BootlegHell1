@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -91,7 +89,7 @@ public class Player : InputProvider
         {
             
             float crouchingColliderSizeY = 2.1f; 
-            float crouchingOffsetY = 3.6f;
+            float crouchingOffsetY = 3.63f;
             Vector3 crouchColliderVector = new Vector3(colliderSize.x, crouchingColliderSizeY, colliderSize.z);
             Vector3 crouchOffsetVector = new Vector3(colliderOffset.x, crouchingOffsetY, colliderOffset.z);
             

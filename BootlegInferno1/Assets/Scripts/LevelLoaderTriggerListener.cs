@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoaderTriggerListener : MonoBehaviour
 {
-    [SerializeField] private PlayerTriggerDetection playerTriggerDetection;
     LevelLoader levelLoader;
 
     private void Start()
     {
         levelLoader = GetComponent<LevelLoader>();
-        playerTriggerDetection.OnDeath += PlayerTriggerDetection_OnDeath;
+        PlayerTriggerDetection.Instance.OnDeath += PlayerTriggerDetection_OnDeath;
+        PlayerTriggerDetection.Instance.OnNextLevel += PlayerTriggerDetection_OnNextLevel;
+    }
+
+    private void PlayerTriggerDetection_OnNextLevel(object sender, System.EventArgs e)
+    {
+        StartCoroutine(levelLoader.LoadLevel());
     }
 
     private void PlayerTriggerDetection_OnDeath(object sender, System.EventArgs e)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HotPlatform : MonoBehaviour
 {
     private enum State
@@ -10,20 +11,21 @@ public class HotPlatform : MonoBehaviour
         Unwalkable,
     }
 
-    private Transform platform;
+    private Animator animator;
     private State state;
 
-    private const string UNTAGGED = "Untagged";
-    private const string DANGER = "Danger";
+    [SerializeField] private float duration = 6f;
+    private float walkableTimer;
+    private float unWalkableTimer;
 
-    private float walkableTimer = 3f;
-    private float unWalkableTimer = 3f;
+    private const string SINK = "Sink";
+    private const string EMERGANCE = "Emergance";
 
     private void Start()
     {
-       
+        animator = GetComponent<Animator>();
         state = State.Walkable;
-        platform = GetComponent<Transform>();
+        walkableTimer = duration;
     }
 
     private void Update()
@@ -35,9 +37,8 @@ public class HotPlatform : MonoBehaviour
                 if(walkableTimer <= 0)
                 {
                     state = State.Unwalkable;
-                    transform.tag = DANGER;
-                    unWalkableTimer = 10f;
-                    Debug.Log("Changed to UnWalkable");
+                    animator.SetTrigger(SINK);
+                    unWalkableTimer = duration/2;
                 }
                 break;
             case State.Unwalkable:
@@ -45,9 +46,8 @@ public class HotPlatform : MonoBehaviour
                 if (unWalkableTimer <= 0)
                 {
                     state = State.Walkable;
-                    transform.tag = UNTAGGED;
-                    walkableTimer = 10f;
-                    Debug.Log("Changed to Walkable");
+                    animator.SetTrigger(EMERGANCE);
+                    walkableTimer = duration;
                 }
                 break;
         }

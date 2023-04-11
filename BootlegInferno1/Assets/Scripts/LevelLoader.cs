@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
 
-   
     private enum AllLevels
     {
         MainMenu,
-        Level1
+        Level1,
+        Level2
     }
     
     [SerializeField] private AllLevels nextLevel;
@@ -24,10 +24,9 @@ public class LevelLoader : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name==mainMenu.ToString() && Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(LoadLevel(nextLevel.ToString()));
+            StartCoroutine(LoadLevel());
         }
     }
-
 
     private void LoadMainMenu()
     {
@@ -41,6 +40,16 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(levelName);
+
+    }
+
+    public IEnumerator LoadLevel()
+    {
+        fade.SetTrigger(TRIGGER_NAME);
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(nextLevel.ToString());
 
     }
 }
