@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectingCrystalls : MonoBehaviour
+public class CollectingCrystals : MonoBehaviour
 {
     private Collider2D crystalCollider;
     private void Start()

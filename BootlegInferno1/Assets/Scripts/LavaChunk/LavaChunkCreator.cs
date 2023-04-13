@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class LavaChunkCreator : MonoBehaviour
@@ -17,7 +14,7 @@ public class LavaChunkCreator : MonoBehaviour
     {
        time = 0f;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         time += Time.deltaTime;
         if(time >= timeToInstantiate)

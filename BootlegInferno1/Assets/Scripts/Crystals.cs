@@ -13,9 +13,6 @@ public class Crystals : MonoBehaviour
         public int crystals;
     }
 
-    private void Awake()
-    {
-    }
     private void Start()
     {
         PlayerTriggerDetection.Instance.OnCrystalCollected += CrystalsCollected_OnCrystalCollected;

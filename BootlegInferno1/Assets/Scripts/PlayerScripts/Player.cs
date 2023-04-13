@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Player : InputProvider
 {
-
     public static Player Instance { get; private set; }
 
     [SerializeField]private Rigidbody2D playerRigidbody;
@@ -37,8 +36,7 @@ public class Player : InputProvider
 
         playerInputActions.Player.Jump.performed += Jump;
 
-        PlayerTriggerDetection playerTriggerDetection = GetComponent<PlayerTriggerDetection>();
-        playerTriggerDetection.OnDeath += PlayerTriggerDetection_OnDeath;
+        PlayerTriggerDetection.Instance.OnDeath += PlayerTriggerDetection_OnDeath;
         
     }
 
@@ -53,12 +51,12 @@ public class Player : InputProvider
         float moveDirection = playerInputActions.Player.Move.ReadValue<float>();
         float movementSpeed = maxMovementSpeed;
 
-        Crouching();
+        IsCrouching();
 
-        if (!isGrounded())
+        if (!IsGrounded())
             movementSpeed /= 2;
 
-        if(!Crouching() && canMove)
+        if(!IsCrouching() && canMove)
         {
             movementVector2D.x = moveDirection * movementSpeed;
 
@@ -73,7 +71,7 @@ public class Player : InputProvider
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (isGrounded() && !Crouching())
+        if (IsGrounded() && !IsCrouching())
         {
             Vector2 jumpVector2D = new Vector2(0f, 1f * jumpForce);
             if (context.performed)
@@ -81,7 +79,7 @@ public class Player : InputProvider
         }
     }
 
-    private bool Crouching()
+    private bool IsCrouching()
     {
         float isCrouching = playerInputActions.Player.Crouch.ReadValue<float>();
 
@@ -130,7 +128,7 @@ public class Player : InputProvider
         this.isTurnedRight = isTurnedRight;
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         float extraHeightTest = 0.1f;
         Vector3 colliderReduction = new Vector3(0.1f, 0f, 0f);
