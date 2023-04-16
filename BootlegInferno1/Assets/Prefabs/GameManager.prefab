@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8777705555995636373}
   - component: {fileID: 8777705555995636372}
+  - component: {fileID: 5956621660601623000}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3788348f703a9f498efbed9ded3e156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5956621660601623000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8777705555995636375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381c97a96ce51ac4d933a1db94f56804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allCrystalsSO: {fileID: 11400000, guid: 29995d6ba64819d4795857b57e06cdb7, type: 2}

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2058748707
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 454629b5d369c5949b790ac79cf7e345, type: 3}
   m_Color: {r: 0, g: 0.60098886, b: 1, a: 1}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6548627731236190973}
   - component: {fileID: 6548627731236190974}
-  - component: {fileID: 6548627731236190975}
+  - component: {fileID: 7861007890182317858}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Crystal
@@ -156,7 +156,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &6548627731236190975
+--- !u!114 &7861007890182317858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,10 +165,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6548627731236190968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009d5e1130970a64697480d0a7e9b636, type: 3}
+  m_Script: {fileID: 11500000, guid: af8572d74938091458e297c0614aba1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystalCollider: {fileID: 6548627731236190974}
 --- !u!1 &6548627731756908631
 GameObject:
   m_ObjectHideFlags: 0

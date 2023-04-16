@@ -6,12 +6,10 @@ public class PlayerTriggerDetection : MonoBehaviour
     public static PlayerTriggerDetection Instance { get; private set; }
     
     private const string DANGER_TAG = "Danger";
-    private const string CRYSTAL_TAG = "Crystal";
     private const string NEXT_LEVEL = "NextLevel";
     
     public event EventHandler OnDeath;
     public event EventHandler OnNextLevel;
-    public event EventHandler<OnCrystalCollectedEventArgs> OnCrystalCollected;
     public class OnCrystalCollectedEventArgs : EventArgs
     {
         public Collider2D collider;
@@ -24,13 +22,14 @@ public class PlayerTriggerDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        ICollectible collectible = collision.GetComponent<ICollectible>();
         if(collision.tag == DANGER_TAG)
         {
             OnDeath?.Invoke(this, EventArgs.Empty);
         }
-        if(collision.tag == CRYSTAL_TAG)
+        if(collectible!=null)
         {
-            OnCrystalCollected?.Invoke(this, new OnCrystalCollectedEventArgs { collider = collision});
+            collectible.Pick();
         }
         if(collision.tag == NEXT_LEVEL)
         {

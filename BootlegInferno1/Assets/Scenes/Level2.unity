@@ -5300,6 +5300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381c97a96ce51ac4d933a1db94f56804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allCrystalsSO: {fileID: 11400000, guid: 29995d6ba64819d4795857b57e06cdb7, type: 2}
 --- !u!4 &307974036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4682607665121218027, guid: 659832bbf30ff184a8645d1471442eb6, type: 3}
