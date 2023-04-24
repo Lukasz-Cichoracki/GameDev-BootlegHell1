@@ -6,6 +6,7 @@ public abstract class BaseCollectingItems : MonoBehaviour, ICollectible
     public enum Items
     {
         Crystal,
+        Key_Item,
     }
 
     public static EventHandler<OnCollectEventArgs> OnCollect;
