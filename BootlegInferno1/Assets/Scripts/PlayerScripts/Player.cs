@@ -11,7 +11,22 @@ public class Player : InputProvider
 
     [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private float jumpForce = 1f;
+
+    public float JumpForce
+    {
+        get { return jumpForce; }
+        set { if(value>0) jumpForce = value; }
+    }
+
     [SerializeField] private float maxMovementSpeed = 3f;
+
+
+    public float MaxMovementSpeed
+    {
+        get { return maxMovementSpeed; }
+        set { if(value>0) maxMovementSpeed = value; }
+    }
+
 
     [SerializeField] private CapsuleCollider2D playerCollider;
     private Vector3 colliderSize;
@@ -39,6 +54,7 @@ public class Player : InputProvider
         PlayerTriggerDetection.Instance.OnDeath += PlayerTriggerDetection_OnDeath;
         
     }
+
 
     private void PlayerTriggerDetection_OnDeath(object sender, System.EventArgs e)
     {
@@ -140,4 +156,5 @@ public class Player : InputProvider
     {
         playerInputActions.Player.Jump.performed -= Jump;
     }
+
 }

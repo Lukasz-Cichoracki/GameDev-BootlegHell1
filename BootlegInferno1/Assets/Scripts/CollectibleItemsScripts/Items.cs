@@ -22,7 +22,6 @@ public class Items : MonoBehaviour
         if(e.itemType == BaseCollectingItems.Items.Crystal)
         {
             allItemsSO.crystalsCollected++;
-            Debug.Log(allItemsSO.crystalsCollected);
         }
         if(e.itemType == BaseCollectingItems.Items.Key_Item)
         {
@@ -37,8 +36,4 @@ public class Items : MonoBehaviour
         BaseCollectingItems.OnCollect -= OnCollect;       
     }
 
-    public int GetKeyItems()
-    {
-        return allItemsSO.keyItemsCollected;
-    }
 }
