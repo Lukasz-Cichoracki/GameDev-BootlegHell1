@@ -11,6 +11,7 @@ public class FireParticles : MonoBehaviour
     private float time = 0f;
     private void Update()
     {
+    
         time += Time.deltaTime;
         if (time >= timeToDestroy)
             Destroy(this.gameObject);
