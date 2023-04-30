@@ -87,7 +87,7 @@ public class Player : InputProvider
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (IsGrounded() && !IsCrouching())
+        if (IsGrounded() && !IsCrouching() && !GameManager.Instance.IsPaused)
         {
             Vector2 jumpVector2D = new Vector2(0f, 1f * jumpForce);
             if (context.performed)

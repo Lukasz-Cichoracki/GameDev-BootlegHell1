@@ -31,6 +31,8 @@ public class DevCommandReader : MonoBehaviour
         playerInput = input.text;
         command = playerInput.Split(' ');
         input.text = null;
+        if (command.Length == 1)
+            OnSubmit?.Invoke(this, new OnSubmitEventArgs { command = command[0]});
         if (command.Length == 2)
             OnSubmit?.Invoke(this, new OnSubmitEventArgs { command = command[0], argument = command[1] });
     }
