@@ -38,7 +38,7 @@ public class DevCommands : MonoBehaviour
         {
             case "AddCrystals":
                 if (Int32.TryParse(argument, out int crystals))
-                    itemsSO.crystalsCollected += crystals;
+                    itemsSO.allCrystalsCollected += crystals;
                 break;
             case "ChangeJumpForce":
                 if (float.TryParse(argument, out float jumpForce))
@@ -53,6 +53,9 @@ public class DevCommands : MonoBehaviour
                 break;
             case "AllKeys":
                 OnForceAllKeyItemsColected?.Invoke(this, EventArgs.Empty);
+                break;
+            case "Help":
+                Debug.Log("AddCrystals | ChangeJumpForce | SetSpeed | ChangeLevel | AllKeys");
                 break;
             default:
                 Debug.Log("Unknown Command!");

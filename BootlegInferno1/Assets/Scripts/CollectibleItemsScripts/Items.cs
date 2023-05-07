@@ -14,6 +14,8 @@ public class Items : MonoBehaviour
     private void Start()
     {
         BaseCollectingItems.OnCollect += OnCollect;
+        PlayerTriggerDetection.Instance.OnNextLevel += Trigger_OnNextLevel;
+        allItemsSO.crystalsCollectedOnLevel = 0;
         allItemsSO.keyItemsCollected = 0;
     }
 
@@ -21,7 +23,7 @@ public class Items : MonoBehaviour
     {
         if(e.itemType == BaseCollectingItems.Items.Crystal)
         {
-            allItemsSO.crystalsCollected++;
+            allItemsSO.crystalsCollectedOnLevel++;
         }
         if(e.itemType == BaseCollectingItems.Items.Key_Item)
         {
@@ -29,6 +31,12 @@ public class Items : MonoBehaviour
             if (allKeyItemsOnLevel == allItemsSO.keyItemsCollected)
                 OnAllKeyItemsCollected?.Invoke(this, EventArgs.Empty);
         }
+    }
+    
+    private void Trigger_OnNextLevel(object sender, EventArgs e)
+    {
+        allItemsSO.allCrystalsCollected += allItemsSO.crystalsCollectedOnLevel;
+        allItemsSO.crystalsCollectedOnLevel = 0;
     }
 
     private void OnDestroy()
